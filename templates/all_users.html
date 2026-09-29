@@ -1,0 +1,164 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="utf-8">
+
+<meta
+    name="viewport"
+    content="width=device-width,initial-scale=1"
+>
+
+<title>
+    FitBuddy | Admin
+</title>
+
+<link
+    rel="stylesheet"
+    href="/static/css/style.css"
+>
+
+</head>
+
+<body>
+
+<main class="container wide">
+
+<div class="topbar">
+
+<a
+    href="/"
+    class="brand"
+>
+    FITBUDDY
+</a>
+
+<a
+    href="/"
+    class="link"
+>
+    Home
+</a>
+
+</div>
+
+
+<section class="card">
+
+<h1>
+    All Users
+</h1>
+
+<p class="muted">
+    Administrative view of stored profiles
+    and latest plans.
+</p>
+
+
+{% if not rows %}
+
+<p>
+    No users have been registered yet.
+</p>
+
+{% endif %}
+
+
+{% for row in rows %}
+
+<article class="admin-user">
+
+<div class="profile-grid">
+
+<div>
+    <span>User ID</span>
+    <strong>
+        {{ row.user.user_id }}
+    </strong>
+</div>
+
+<div>
+    <span>Name</span>
+    <strong>
+        {{ row.user.username }}
+    </strong>
+</div>
+
+<div>
+    <span>Age</span>
+    <strong>
+        {{ row.user.age }}
+    </strong>
+</div>
+
+<div>
+    <span>Weight</span>
+    <strong>
+        {{ row.user.weight }} kg
+    </strong>
+</div>
+
+<div>
+    <span>Goal</span>
+    <strong>
+        {{ row.user.goal }}
+    </strong>
+</div>
+
+<div>
+    <span>Intensity</span>
+    <strong>
+        {{ row.user.intensity }}
+    </strong>
+</div>
+
+</div>
+
+
+{% if row.plan %}
+
+<h3>
+    Original plan
+</h3>
+
+<pre class="plan compact">
+{{ row.plan.original_plan }}
+</pre>
+
+
+{% if row.plan.updated_plan %}
+
+<h3>
+    Updated plan
+</h3>
+
+<pre class="plan compact">
+{{ row.plan.updated_plan }}
+</pre>
+
+<p>
+<strong>
+Feedback:
+</strong>
+
+{{ row.plan.feedback }}
+
+</p>
+
+{% endif %}
+
+{% endif %}
+
+</article>
+
+{% endfor %}
+
+</section>
+
+</main>
+
+</body>
+
+</html>

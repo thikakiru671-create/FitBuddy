@@ -1,0 +1,176 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="utf-8">
+
+<meta
+    name="viewport"
+    content="width=device-width,initial-scale=1"
+>
+
+<title>
+    FitBuddy | Your Plan
+</title>
+
+<link
+    rel="stylesheet"
+    href="/static/css/style.css"
+>
+
+</head>
+
+<body>
+
+<main class="container">
+
+<div class="topbar">
+
+<a
+    href="/"
+    class="brand"
+>
+    FITBUDDY
+</a>
+
+<a
+    href="/"
+    class="link"
+>
+    New plan
+</a>
+
+</div>
+
+
+{% if updated %}
+
+<div class="success">
+    Your plan was updated using your feedback.
+</div>
+
+{% endif %}
+
+
+<section class="card">
+
+<h1>
+    Hello, {{ username }} 👋
+</h1>
+
+
+<div class="profile-grid">
+
+<div>
+    <span>Name</span>
+    <strong>{{ username }}</strong>
+</div>
+
+<div>
+    <span>User ID</span>
+    <strong>{{ user_id }}</strong>
+</div>
+
+<div>
+    <span>Age</span>
+    <strong>{{ age }}</strong>
+</div>
+
+<div>
+    <span>Weight</span>
+    <strong>{{ weight }} kg</strong>
+</div>
+
+<div>
+    <span>Goal</span>
+    <strong>{{ goal }}</strong>
+</div>
+
+<div>
+    <span>Intensity</span>
+    <strong>{{ intensity }}</strong>
+</div>
+
+</div>
+
+</section>
+
+
+<section class="card">
+
+<h2>
+    7-Day Workout Plan
+</h2>
+
+<pre class="plan">
+{{ plan }}
+</pre>
+
+</section>
+
+
+<section class="card tip">
+
+<h2>
+    Nutrition / Recovery Tip
+</h2>
+
+<p>
+    {{ nutrition_tip }}
+</p>
+
+</section>
+
+
+<section class="card">
+
+<h2>
+    Refine your plan
+</h2>
+
+<p class="muted">
+    Examples: "more cardio",
+    "add another rest day",
+    or "reduce jumping exercises".
+</p>
+
+
+<form
+    action="/submit-feedback"
+    method="post"
+>
+
+<input
+    type="hidden"
+    name="user_id"
+    value="{{ user_id }}"
+>
+
+
+<textarea
+    name="feedback"
+    rows="5"
+    maxlength="2000"
+    required
+    placeholder="Tell FitBuddy what you want changed..."
+></textarea>
+
+
+<button
+    class="btn"
+    type="submit"
+>
+    Update Plan with AI
+</button>
+
+</form>
+
+</section>
+
+</main>
+
+</body>
+
+</html>
